@@ -1,11 +1,85 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import { profile, stats, skills, experience, education } from '../data/resume';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = (await getCollection('projects')).sort(
+  (a, b) => Number(b.data.featured) - Number(a.data.featured) || b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
-
 <Layout>
-	<Welcome />
+  <section class="hero">
+    <h1>{profile.name}</h1>
+    <p class="title">{profile.title}</p>
+    <p class="blurb">{profile.blurb}</p>
+    <div class="links">
+      <a href={profile.linkedin} target="_blank">LinkedIn</a>
+      <a href="/resume.pdf" target="_blank">Resume</a>
+    </div>
+  </section>
+
+  <section class="stats">
+    {stats.map((s) => (
+      <div><strong>{s.value}</strong><span>{s.label}</span></div>
+    ))}
+  </section>
+
+  <h2 id="projects">Projects</h2>
+  <div class="grid">
+    {projects.map((p) => (
+      <a class="card" href={`/projects/${p.id}/`}>
+        <h3>{p.data.title}</h3>
+        <p>{p.data.summary}</p>
+        <div>{p.data.tags.map((t) => <span class="tag">{t}</span>)}</div>
+      </a>
+    ))}
+  </div>
+
+  <h2 id="skills">Skills</h2>
+  <div class="grid">
+    {Object.entries(skills).map(([group, items]) => (
+      <div class="card">
+        <h3>{group}</h3>
+        <div>{items.map((i) => <span class="tag">{i}</span>)}</div>
+      </div>
+    ))}
+  </div>
+
+  <h2 id="experience">Experience</h2>
+  <ol class="timeline">
+    {experience.map((job) => (
+      <li>
+        <div class="job-head"><strong>{job.role}</strong> · {job.company}<span>{job.dates}</span></div>
+        <ul>{job.points.map((pt) => <li>{pt}</li>)}</ul>
+      </li>
+    ))}
+  </ol>
+
+  <h2>Education</h2>
+  {education.map((e) => <p><strong>{e.degree}</strong>, {e.school} ({e.date})</p>)}
+
+  <h2 id="contact">Contact</h2>
+  <p>Open to conversations about AI, automation, machine learning, data engineering and data science roles.</p>
+  <p><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
 </Layout>
+
+<style>
+  .hero { padding: 64px 0 24px; }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0; }
+  .title { color: var(--accent); font-weight: 600; font-size: 1.2rem; margin: 4px 0 16px; }
+  .blurb { max-width: 640px; color: var(--muted); font-size: 1.1rem; }
+  .links a { margin-right: 18px; font-weight: 600; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 40px; }
+  .stats div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .stats strong { display: block; font-size: 1.8rem; color: var(--accent); }
+  .stats span { color: var(--muted); font-size: .9rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
+  .card { display: block; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
+  a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+  .card p { color: var(--muted); margin: 0 0 12px; }
+  .timeline { list-style: none; padding: 0; border-left: 2px solid var(--border); }
+  .timeline > li { padding: 0 0 24px 20px; }
+  .job-head span { display: block; color: var(--muted); font-size: .9rem; }
+  .timeline ul { color: var(--muted); margin: 8px 0 0; padding-left: 18px; }
+</style>
