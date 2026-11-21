@@ -13,8 +13,8 @@ const projects = (await getCollection('projects')).sort(
     <p class="title">{profile.title}</p>
     <p class="blurb">{profile.blurb}</p>
     <div class="links">
-      <a href={profile.linkedin} target="_blank">LinkedIn</a>
-      <a href="/resume.pdf" target="_blank">Resume</a>
+      <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
     </div>
   </section>
 

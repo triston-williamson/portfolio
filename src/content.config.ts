@@ -9,7 +9,8 @@ const projects = defineCollection({
     summary: z.string(),
     tags: z.array(z.string()),
     date: z.coerce.date(),
-    demo: z.string().optional(),
+    // Only allow https:// links, so a typo or a pasted javascript: URL can't end up on the site.
+    demo: z.string().regex(/^https:\/\//, 'must start with https://').optional(),
     featured: z.boolean().default(false),
   }),
 });
