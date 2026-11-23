@@ -15,11 +15,11 @@ export const stats = [
 ];
 
 export const skills: Record<string, string[]> = {
-  'AI & Machine Learning': ['LLMs', 'RAG', 'AI Agents', 'LangChain', 'OpenAI', 'PyTorch', 'TensorFlow', 'Scikit-learn', 'XGBoost', 'OpenCV', 'NLTK'],
+  'AI & Machine Learning': ['LLMs', 'RAG', 'AI Agents', 'Claude API', 'LangChain', 'OpenAI', 'PyTorch', 'TensorFlow', 'Scikit-learn', 'XGBoost', 'OpenCV', 'NLTK'],
   'Data Engineering': ['Kafka', 'dbt', 'Spark', 'Databricks', 'Snowflake', 'PostgreSQL', 'BigQuery', 'Hadoop'],
   'Cloud & DevOps': ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'GitHub Actions', 'Azure DevOps', 'CI/CD'],
   'Backend': ['Python', 'FastAPI', 'Flask', 'Pydantic', 'REST APIs', 'SQL', 'R', 'VBA'],
-  'Analytics & BI': ['Tableau', 'Power BI', 'Alteryx', 'Xceptor', 'Plotly', 'A/B Testing', 'Excel'],
+  'Analytics & BI': ['Tableau', 'Power BI', 'Alteryx', 'Xceptor', 'Plotly Dash','A/B Testing', 'Excel'],
   'Finance & Regulatory': ['Bloomberg', 'TRACE', 'Basel', 'FRTB', 'CRR', 'GAAP', 'Liquidity', 'Trade Control'],
 };
 

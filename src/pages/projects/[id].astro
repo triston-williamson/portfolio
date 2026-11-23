@@ -33,5 +33,7 @@ const { title, summary, tags, github, demo } = project.data;
   article :global(figure) { margin: 28px 0; }
   article :global(figure img) { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; border-radius: 12px; border: 1px solid var(--border); }
   article :global(figure.tall img) { max-width: 360px; }
+  article :global(figure.wide img) { max-width: 100%; }
+  article :global(figure.wide figcaption) { max-width: 640px; }
   article :global(figcaption) { color: var(--muted); font-size: .9rem; margin: 8px auto 0; max-width: 520px; text-align: center; }
 </style>
