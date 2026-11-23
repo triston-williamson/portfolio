@@ -11,6 +11,7 @@ const projects = defineCollection({
     date: z.coerce.date(),
     // Only allow https:// links, so a typo or a pasted javascript: URL can't end up on the site.
     demo: z.string().regex(/^https:\/\//, 'must start with https://').optional(),
+    github: z.string().regex(/^https:\/\//, 'must start with https://').optional(),
     featured: z.boolean().default(false),
   }),
 });
