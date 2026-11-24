@@ -35,5 +35,8 @@ const { title, summary, tags, github, demo } = project.data;
   article :global(figure.tall img) { max-width: 360px; }
   article :global(figure.wide img) { max-width: 100%; }
   article :global(figure.wide figcaption) { max-width: 640px; }
+  article :global(table) { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .95rem; display: block; overflow-x: auto; }
+  article :global(th), article :global(td) { padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+  article :global(th) { color: var(--muted); font-weight: 600; }
   article :global(figcaption) { color: var(--muted); font-size: .9rem; margin: 8px auto 0; max-width: 520px; text-align: center; }
 </style>
